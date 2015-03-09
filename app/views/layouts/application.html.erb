@@ -7,6 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+    </div>
+  </nav>
+<p class='navbar-padding'>
+  <nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <% if current_user %>
+        <%= link_to "Sign out", sessions_path, method: :delete %>
+      <% else %>
+        <%= link_to "Register", new_authors_path  %>
+        <%= link_to "Sign in", new_sessions_path  %>
+      <% end %>
+    </div>
+  </nav>
+</p>
 
 <%= yield %>
 

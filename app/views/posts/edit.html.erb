@@ -1,0 +1,7 @@
+<%= form_for @post, url: posts_path(@post), method: :put do |f| %>
+	<%= f.label :content %>
+	<%= f.text_field :content, placeholder: @post.content %>
+
+	<%= f.submit value: 'Update post' %>
+<% end %>
+

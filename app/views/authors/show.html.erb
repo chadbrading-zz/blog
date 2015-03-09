@@ -1,0 +1,7 @@
+<% @author.posts.each do |post| %>
+	<div><%= post.author.name %></div>
+	<div><%= post.content %></div>
+	<% if current_user?(@author) %>
+		<%= link_to 'Edit post', edit_posts_path(post) %>
+	<% end %>
+<% end %>
