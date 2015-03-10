@@ -1,7 +1,12 @@
+<span><%= @author.name %></span>
+	<% if current_user?(@author) %>
+		<span><%= link_to 'Add post', new_post_path %></span>
+	<% end %>
 <% @author.posts.each do |post| %>
-	<div><%= post.author.name %></div>
+	<div><%= post.title %></div>
 	<div><%= post.content %></div>
 	<% if current_user?(@author) %>
-		<%= link_to 'Edit post', edit_posts_path(post) %>
+		<div><%= link_to 'Edit post', edit_post_path(post) %></div>
+		<div><%= link_to 'Delete post', post_path(post), method: :delete %></div>
 	<% end %>
 <% end %>

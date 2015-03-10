@@ -1,4 +1,5 @@
 <% @posts.each do |post| %>
-	<div><%= post.author.name %></div>
+	<div><%= link_to post.author.name, authors_path(post.author) %></div>
+	<div><%= post.title %></div>
 	<div><%= post.content %></div>
 <% end %>

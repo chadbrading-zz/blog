@@ -6,7 +6,7 @@ describe 'author logging in and out', type: :feature do
       count = Author.all.count
       visit '/'
       click_link ('Register')
-      expect(current_path).to eq(new_authors_path)
+      expect(current_path).to eq(new_author_path)
       fill_in 'Name', with: 'John Henry'
       fill_in 'Username', with: 'jhens'
       fill_in 'Password', with: 'password'

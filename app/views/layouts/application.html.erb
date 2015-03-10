@@ -15,10 +15,10 @@
   <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
       <% if current_user %>
-        <%= link_to "Sign out", sessions_path, method: :delete %>
+        <%= link_to "Sign out", session_path(current_user), method: :delete %>
       <% else %>
-        <%= link_to "Register", new_authors_path  %>
-        <%= link_to "Sign in", new_sessions_path  %>
+        <%= link_to "Register", new_author_path  %>
+        <%= link_to "Sign in", new_session_path  %>
       <% end %>
     </div>
   </nav>

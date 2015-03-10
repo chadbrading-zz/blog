@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'posts#index'
-  resource 'posts', only: [:edit, :update]
-  resource 'authors', only: [:new, :create, :show]
-  resource 'sessions', only: [:new, :create, :destroy]
+
+  resources :posts, only: [:new, :edit, :create, :update, :destroy]
+  resources :authors, only: [:new, :create, :show]
+  resources :sessions, only: [:new, :create, :destroy]
 end
