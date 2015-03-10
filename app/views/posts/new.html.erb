@@ -5,6 +5,26 @@
 	<%= f.label :content %>
 	<%= f.text_field :content %>
 
+	<p>
+		Publish Now
+		<%= radio_button_tag(:published, true) %>
+	</p>
+
+	Publish Later
+	<p>
+		Select Time Zone
+  <%= time_zone_select("publish_time", "time_zone", ActiveSupport::TimeZone.all.sort, model: ActiveSupport::TimeZone) %>
+  </p>
+
+	<p>
+		Select Hour
+		<%= select("publish_time", "hour", hours) %>
+	</p>
+
+	<p>
+		Select Date
+		<%= select("publish_time", "date", dates) %>
+	</p>
 	<%= f.submit value: 'Create post' %>
 <% end %>
 
