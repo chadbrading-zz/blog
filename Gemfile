@@ -28,6 +28,9 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'remove_turbolinks'
 gem 'bcrypt'
+gem 'activejob'
+gem 'sidekiq'
+gem 'redis'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -35,7 +38,7 @@ group :development, :test do
   gem 'fabrication'
   gem 'faker'
   gem 'lorem_ipsum_amet'
-  gem 'pry'
+  gem 'pry-rails'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

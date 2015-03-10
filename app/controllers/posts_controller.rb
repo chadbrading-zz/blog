@@ -27,11 +27,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    if params[:published]
-      post = Post.new(posts_params.merge(author: Author.find(current_user), published: params[:published]))
-    else
-      post = Post.new(posts_params.merge(author: Author.find(current_user), publish_time: publish_time))
-    end
+    require 'pry'; binding.pry;
+    post = PostPublishingService.new(params, posts_params, current_user)
     if post.save!
       redirect_to author_path(Author.find(current_user))
     else
@@ -43,22 +40,5 @@ class PostsController < ApplicationController
 
   def posts_params
     params.require(:post).permit(:title, :content, :published)
-  end
-
-  def publish_time
-    ActiveSupport::TimeZone[publish_params['time_zone']].parse(publish_params['date']) + 60*60*hours(publish_params['hour'])
-  end
-
-  def publish_params
-    params['publish_time']
-  end
-
-  def hours(time)
-    hour = time.split(":")[0]
-    if time.split(" ")[-1] == 'am'
-      hour == '12' ? 0 : hour.to_i
-    else
-      hour == '12' ? 12 : hour.to_i + 12
-    end
   end
 end
