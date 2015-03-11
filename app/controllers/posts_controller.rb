@@ -27,9 +27,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    require 'pry'; binding.pry;
     post = PostPublishingService.new(params, posts_params, current_user)
     if post.save!
+      TWITTER_CLIENT.update("test tweet")
       redirect_to author_path(Author.find(current_user))
     else
       render :new

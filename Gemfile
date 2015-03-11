@@ -31,6 +31,7 @@ gem 'bcrypt'
 gem 'activejob'
 gem 'sidekiq'
 gem 'redis'
+gem 'twitter'
 
 group :development, :test do
   gem 'rspec-rails'

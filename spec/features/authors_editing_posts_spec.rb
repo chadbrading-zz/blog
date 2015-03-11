@@ -36,4 +36,12 @@ describe 'authors editing posts' do
     visit '/'
     expect(page).not_to have_content(post2.title)
   end
+
+  it 'sends a tweet when a post is published' do
+    click_link 'Add post'
+    fill_in 'Title', with: 'title of post'
+    fill_in 'Content', with: 'new post'
+    choose('published')
+    click_on 'Create post'
+  end
 end

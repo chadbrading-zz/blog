@@ -17,6 +17,7 @@
       <% if current_user %>
         <%= link_to "Sign out", session_path(current_user), method: :delete %>
       <% else %>
+        <%= link_to 'Sign in with Twitter', "auth/twitter" %>
         <%= link_to "Register", new_author_path  %>
         <%= link_to "Sign in", new_session_path  %>
       <% end %>
