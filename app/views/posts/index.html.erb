@@ -3,5 +3,8 @@
     <div><%= link_to post.author.name, author_path(post.author) %></div>
     <div><%= post.title %></div>
     <div><%= post.content %></div>
+    <% if post.photo.content_type %>
+      <div><%= image_tag post.photo.url %></div>
+    <% end %>
   <% end %>
 <% end %>

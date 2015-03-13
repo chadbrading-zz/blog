@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = Author.find_by(username: params[:session][:username])
+    username = params[:session][:username]
+    user = Author.find_by(username: username)
     if user.password == params[:session][:password]
       session[:current_user] = user.id
       redirect_to controller: 'authors', action: 'show', id: user.id

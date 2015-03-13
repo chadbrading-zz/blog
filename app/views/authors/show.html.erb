@@ -6,10 +6,16 @@
 	<% if post.published && !current_user?(@author) %>
 		<div><%= post.title %></div>
 		<div><%= post.content %></div>
+		<% if post.photo.content_type %>
+			<div><%= image_tag post.photo.url %></div>
+		<% end %>
 	<% end %>
 	<% if current_user?(@author) %>
 		<div><%= post.title %></div>
 		<div><%= post.content %></div>
+		<% if post.photo.content_type %>
+			<div><%= image_tag post.photo.url %></div>
+		<% end %>
 		<div><%= link_to 'Edit post', edit_post_path(post) %></div>
 		<div><%= link_to 'Delete post', post_path(post), method: :delete %></div>
 	<% end %>
