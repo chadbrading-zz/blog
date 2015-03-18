@@ -27,11 +27,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = PostPublishingService.new(params, posts_params, current_user, params[:tweet])
-    if post.save!
-      post_id = Post.last.id
-      TWITTER_CLIENT.update("http://localhost:3000/posts/#{post_id} #{params[:tweet]}")
-      redirect_to author_path(Author.find(current_user))
+    if publisher.save!
+      redirect_to author_path(author)
     else
       render :new
     end
@@ -39,12 +36,24 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    if @post.markdown
-      @html = RDiscount.new(@post.markdown).to_html
-    end
+    @html = RDiscount.new(@post.markdown || "").to_html
   end
 
   private
+
+  def author
+    Author.find(current_user)
+  end
+
+  def post
+    Post.new(posts_params) do |p|
+      p.author = author
+    end
+  end
+
+  def publisher
+    PostPublishingService.new(post, params)
+  end
 
   def posts_params
     params.require(:post).permit(:title, :content, :published, :photo, :markdown)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317145435) do
+ActiveRecord::Schema.define(version: 20150318185021) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150317145435) do
     t.datetime "updated_at"
     t.string   "title"
     t.boolean  "published"
-    t.time     "publish_time"
+    t.datetime "publish_time"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"

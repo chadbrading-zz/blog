@@ -31,5 +31,7 @@ group :development, :test do
   gem 'faker'
   gem 'lorem_ipsum_amet'
   gem 'pry-rails'
+  gem 'launchy'
+  gem 'database_cleaner'
 end
 

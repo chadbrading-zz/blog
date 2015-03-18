@@ -1,26 +1,21 @@
 class PostPublishingService
 
-  attr_reader :params, :posts_params, :user, :tweet
-  def initialize(params, posts_params, user, tweet=nil)
+  attr_reader :post, :params, :tweet
+  def initialize(post, params)
+    @post = post
     @params = params
-    @user = user
-    @posts_params = posts_params
-    @tweet = tweet
+    @tweet = params[:tweet]
   end
 
   def save!
-    if published
-      post = Post.new(posts_params.merge(author: Author.find(user), published: published))
-    else
-      post = Post.new(posts_params.merge(author: Author.find(user), publish_time: publish_time))
-    end
+    post.publish_time = publish_time
     post.save!
-    PublishPostWorker.perform_at(post['publish_time'], post.id, tweet) unless published
+    PublishPostWorker.perform_at(publish_time, post.id, tweet)
     true
   end
 
   def publish_time
-    published || ActiveSupport::TimeZone[time_zone].parse(date) + seconds
+    published ? Time.now : ActiveSupport::TimeZone[time_zone].parse(date) + seconds
   end
 
   private

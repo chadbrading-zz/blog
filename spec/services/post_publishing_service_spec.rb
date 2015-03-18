@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe PostPublishingService do
 
-  subject(:service) { described_class.new(params, posts_params, user) }
+  subject(:service) { described_class.new(post, params) }
+  let(:post) { Fabricate(:post) }
   let(:posts_params) { params["post"] }
   let(:user) { 1 }
 
@@ -35,8 +36,8 @@ describe PostPublishingService do
         "published"    => true
       }.with_indifferent_access
     end
-    it "" do
-      expect(service.publish_time).to eq(true)
+    it "#publish_time" do
+      expect(service.publish_time).to be_within(1.second).of(Time.now)
     end
 
   end
