@@ -22,6 +22,7 @@ gem 'sidekiq'
 gem 'redis'
 gem 'twitter'
 gem 'paperclip'
+gem 'rdiscount'
 
 group :development, :test do
   gem 'rspec-rails'

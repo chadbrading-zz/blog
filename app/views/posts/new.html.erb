@@ -5,6 +5,9 @@
 	<%= f.label :content %>
 	<%= f.text_field :content %>
 
+	<%= f.label :markdown %>
+	<%= f.text_field :markdown %>
+
 	<%= f.file_field :photo %>
 
 	<p>
@@ -27,6 +30,9 @@
 		Select Date
 		<%= select("publish_time", "date", dates) %>
 	</p>
+
+	<div>Enter a tweet so BLOG can notify the world</div>
+	<%= text_field_tag 'tweet' %>
 	<%= f.submit value: 'Create post' %>
 <% end %>
 

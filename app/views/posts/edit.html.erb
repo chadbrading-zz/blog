@@ -5,6 +5,9 @@
 	<%= f.label :content %>
 	<%= f.text_field :content, placeholder: @post.content %>
 
+	<%= f.label :markdown %>
+	<%= f.text_field :markdown, placeholder: @post.markdown %>
+
 	<%= f.file_field :photo %> 
 
 	<%= f.submit value: 'Update post' %>

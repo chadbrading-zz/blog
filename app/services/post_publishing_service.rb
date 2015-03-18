@@ -1,10 +1,11 @@
 class PostPublishingService
 
-  attr_reader :params, :posts_params, :user
-  def initialize(params, posts_params, user)
+  attr_reader :params, :posts_params, :user, :tweet
+  def initialize(params, posts_params, user, tweet=nil)
     @params = params
     @user = user
     @posts_params = posts_params
+    @tweet = tweet
   end
 
   def save!
@@ -14,7 +15,7 @@ class PostPublishingService
       post = Post.new(posts_params.merge(author: Author.find(user), publish_time: publish_time))
     end
     post.save!
-    PublishPostWorker.perform_at(post['publish_time'], post.id) unless published
+    PublishPostWorker.perform_at(post['publish_time'], post.id, tweet) unless published
     true
   end
 

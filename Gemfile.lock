@@ -132,6 +132,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    rdiscount (2.1.8)
     rdoc (4.2.0)
       json (~> 1.4)
     redis (3.2.1)
@@ -233,6 +234,7 @@ DEPENDENCIES
   paperclip
   pry-rails
   rails (= 4.1.7)
+  rdiscount
   redis
   remove_turbolinks
   rspec-rails
