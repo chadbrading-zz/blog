@@ -13,7 +13,6 @@
 	<% if current_user?(@author) %>
 		<div><%= link_to post.title, post_path(post) %></div>
 		<div><%= post.content %></div>
-		<div><%= link_to post, post_path(post) %></div>
 		<% if post.photo.content_type %>
 			<div><%= image_tag post.photo.url %></div>
 		<% end %>
