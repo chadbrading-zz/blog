@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   def create
     if publisher.save!
       redirect_to author_path(author)
-    else
+   else
       render :new
     end
   end
