@@ -1,15 +1,10 @@
 class PostsController < ApplicationController
-  def index
-    @posts = Post.all
-  end
-
-  def edit
-    @post = Post.find(params[:id])
-  end
+  expose(:post, attributes: :post_params)
+  expose(:posts)
 
   def update
-    post = Post.find(params[:id])
-    if post.update(posts_params)
+    post_params
+    if post.save
       redirect_to author_path(post.author)
     else
       render :edit, id: params[:id]
@@ -17,13 +12,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = Post.find(params[:id])
     post.destroy
     redirect_to author_path(post.author)
-  end
-
-  def new
-    @post = Post.new
   end
 
   def create
@@ -35,8 +25,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    @html = RDiscount.new(@post.markdown || "").to_html
+    @html = RDiscount.new(post.markdown || "").to_html
   end
 
   private
@@ -45,17 +34,17 @@ class PostsController < ApplicationController
     Author.find(current_user)
   end
 
-  def post
-    Post.new(posts_params) do |p|
+  def new_post
+    Post.new(post_params) do |p|
       p.author = author
     end
   end
 
   def publisher
-    PostPublishingService.new(post, params)
+    PostPublishingService.new(new_post, params)
   end
 
-  def posts_params
-    params.require(:post).permit(:title, :content, :published, :photo, :markdown)
+  def post_params
+    params.require(:post).permit! #(:id, :title, :content, :published, :photo, :markdown)
   end
 end

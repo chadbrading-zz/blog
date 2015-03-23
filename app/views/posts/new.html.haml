@@ -1,0 +1,32 @@
+= form_for post, html: { multipart: true } do |f|
+  = f.label :title
+  = f.text_field :title
+
+  = f.label :content
+  = f.text_field :content
+
+  = f.label :markdown
+  = f.text_field :markdown
+
+  = f.file_field :photo
+
+  %p
+    Publish Now
+    = radio_button_tag(:published, true)
+
+  Publish Later
+  %p
+    Select Time Zone
+    = time_zone_select("publish_time", "time_zone", ActiveSupport::TimeZone.all.sort, model: ActiveSupport::TimeZone)
+
+  %p
+    Select Hour
+    = select("publish_time", "hour", hours)
+
+  %p
+    Select Date
+    = select("publish_time", "date", dates)
+
+  %div Enter a tweet so BLOG can notify the world
+  = text_field_tag 'tweet'
+  = f.submit value: 'Create post'

@@ -1,0 +1,7 @@
+%div= link_to post.author.name, author_path(post.author)
+%div= post.title
+%div= post.content
+%div= raw @html
+- if post.photo.content_type
+  %div= image_tag post.photo.url
+

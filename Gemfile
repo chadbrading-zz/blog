@@ -23,6 +23,8 @@ gem 'redis'
 gem 'twitter'
 gem 'paperclip'
 gem 'rdiscount'
+gem 'haml-rails', "~> 0.9"
+gem 'decent_exposure'
 
 group :development, :test do
   gem 'rspec-rails'

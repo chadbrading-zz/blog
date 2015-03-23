@@ -1,0 +1,7 @@
+- @posts.each do |post|
+  - if post.published
+    %div= link_to post.author.name, author_path(post.author)
+    %div= link_to post.title, post_path(post)
+    %div= post.content
+    - if post.photo.content_type
+      %div= image_tag post.photo.url

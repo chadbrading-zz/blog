@@ -1,0 +1,16 @@
+%span= author.name
+- if current_user?(author)
+  %span= link_to 'Add post', new_post_path
+- author.posts.each do |post|
+  - if post.published && !current_user?(author)
+    %div= link_to post.title, post_path(post)
+    %div= post.content
+    - if post.photo.content_type
+      %div= image_tag post.photo.url
+  - if current_user?(author)
+    %div= link_to post.title, post_path(post)
+    %div= post.content
+    - if post.photo.content_type
+      %div= image_tag post.photo.url
+    %div= link_to 'Edit post', edit_post_path(post)
+    %div= link_to 'Delete post', post_path(post), method: :delete

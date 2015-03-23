@@ -5,9 +5,9 @@ class SessionsController < ApplicationController
   def create
     username = params[:session][:username]
     user = Author.find_by(username: username)
-    if user.password == params[:session][:password]
+    if user && user.password == params[:session][:password]
       session[:current_user] = user.id
-      redirect_to controller: 'authors', action: 'show', id: user.id
+      redirect_to  author_path(user)
     else
       render :new
     end
@@ -15,6 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:current_user] = nil
-    redirect_to controller: 'posts', action: 'index'
+    redirect_to  posts_path
   end
 end

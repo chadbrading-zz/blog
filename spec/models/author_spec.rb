@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Author do
-  let(:author) { Author.new(name:'John Thomas') }
+  let(:author) { described_class.new(name:'John Thomas') }
 
   it 'is valid' do
     expect(author).to be_valid

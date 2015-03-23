@@ -1,21 +1,20 @@
 class AuthorsController < ApplicationController
+  expose(:author)
+
   def new
-    @author = Author.new
   end
 
   def create
-    author = Author.new(author_params)
     author.password = params[:password]
     if author.save!
       session[:current_user] = author.id
-      redirect_to action: 'show', id: author.id
+      redirect_to author_path(author)
     else
       render :new
     end
   end
 
   def show
-    @author = Author.find(params[:id])
   end
 
   private

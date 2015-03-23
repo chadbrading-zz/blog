@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Post do
-  let(:post) { Post.new(author_id: 1, content: 'sample post') }
+  let(:post) { described_class.new(author_id: 1, content: 'sample post') }
 
   it 'is valid' do
     expect(post).to be_valid

@@ -1,0 +1,13 @@
+= form_for post, url: post_path(post), method: :put, html: { multipart: true } do |f|
+  = f.label :title
+  = f.text_field :title, placeholder: post.title
+
+  = f.label :content
+  = f.text_field :content, placeholder: post.content
+
+  = f.label :markdown
+  = f.text_field :markdown, placeholder: post.markdown
+
+  = f.file_field :photo
+
+  = f.submit value: 'Update post'
